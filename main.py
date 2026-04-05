@@ -79,7 +79,9 @@ class Decoder(nn.Module):
         self.ff = FeedForward(d_model)
         self.norm3 = nn.LayerNorm(d_model)
 
-    def forward(self, x, k_encoder, v_encoder, mask):
+    def forward(self, x, k_encoder, v_encoder):
+        tgt_len = x.size(1)
+        mask = torch.triu(torch.ones(tgt_len, tgt_len, device=x.device), diagonal=1).bool()
         output = self.attention(x, x, x, mask)
         output = self.norm1(x+output)
         output_ = self.crossattention(output, k_encoder, v_encoder)
@@ -118,11 +120,16 @@ class Transformer(nn.Module):
         self.encoders = nn.ModuleList([Encoder(seq_len, d_model, num_heads) for _ in range(num_blocks)])
         self.decoders = nn.ModuleList([Decoder(seq_len, d_model, num_heads) for _ in range(num_blocks)])
 
-    def forward(self, x):
-        output = self.embedding(x)
+    def forward(self, x, tgt):
+        # safe encoder outputs and use for decoder
+        output = self.embedding(x) + self.positional_encoding[:x.size(1)]
         encodings = []
         for encoder in self.encoders:
             output = encoder(output)
             encodings.append(output)
+            
+        dec_output = self.embedding(tgt) + self.positional_encoding[:tgt.size(1)]
+        for decoder, enc_output in zip(self.decoders, encodings):
+            dec_output = decoder(dec_output, enc_output, enc_output)
 
-        return output
+        return dec_output
