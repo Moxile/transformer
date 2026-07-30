@@ -1,0 +1,11 @@
+# Process
+First of all, don't worry if you don't get everything written in the paper. The paper uses very academic language with AI slangs I have never heard of. You should focus on the important aspects though. Figure 1 is the core concept shown in the paper. If you understand all the processes in that graphic, then you are basically done with the paper. The follow up contains some important explanations. I would recommend you to understand exactly what happens in 3.2.1 Scaled Dot-Product Attention. You can try derive using the tip at the bottom of the page yourself why we use sqrt(dk) and divide with it - it's a nice mathematical problem solved in short time if you know about means and variances. Also I precepted is as a common question to check basic knowledge of the transformer model so it's nice to have the derivation yourself instead of an explanation out of the air. After that the Multi Head Attention part is also very important to understand since it's necessary when implementing for better performance. The last aspect is the positional encoding. If you understand this formula you're ready to go with the implementation.
+
+# After Reading Before Implementation
+You should now know about Q, K and V as well as how the attention formula works and why it is the way it is. Now follow Figure 1 and implement it yourself while trying to implement it!
+Also don't worry about the syntax, you will learn it by coding ai a lot I use ai for example to remind myself of the right syntax. Important is you remind which classes do what for now!
+
+# Still stuck?
+If you are still stuck, try understanding where the problem comes from! Is it missing math understanding? Is the language too difficult to follow.
+If it's the first - check out some videos from 3Blue1Brown, they are very useful in terms of AI
+If it's the language - there are easier forms of the paper, that's what I did too. Unfortunately I lost the resource and didn't find it, but I will add it as soon as I find it. But I am sure you'll find some other options or the same one easily when googling!

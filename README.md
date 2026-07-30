@@ -1,0 +1,5 @@
+# Learning AI
+
+This repository represents my track of learning advanced AI concepts. After I have learned the basics - from books, video tutorials and websites - I like to
+understand how people write models advanced as ChatGPT or Claude from scratch. I will usually take some paper or new concept and try implement it by understanding the papers myself. The folders will be numbered, so if you're interested and do not know a way of getting into AI either, then you can follow the numbers or check whatever looks interesting to you. The folders will also always contain the resources you will need to complete the implementation as well.
+This will update from time to time as well as this readme. This here is more like a first version to note down for my future me but also for anyone curious at this early point.
